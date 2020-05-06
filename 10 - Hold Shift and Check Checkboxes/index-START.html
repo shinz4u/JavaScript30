@@ -96,6 +96,41 @@
   </div>
 
 <script>
+  // Get stuff on first click.
+  
+  // Get stuff on second click.
+
+  // Select all in between and change the style to crossed.
+
+  const checkBoxes = document.querySelectorAll('.inbox [type="checkbox"]');
+  let lastChecked;
+
+  function handleCheck(e){
+    console.log("inside handle check");
+    let inBetween = false;
+    console.log("E shift is ",e.shiftKey);
+    if (e.shiftKey && this.checked){
+      console.log("inside shift key");
+      checkBoxes.forEach(checkBox => {
+        console.log(checkBox)
+        if (checkBox === this || checkBox === lastChecked){
+          inBetween = !inBetween;
+          console.log("inBetween is now ", inBetween);
+        }
+        if (inBetween){
+          checkBox.checked = true;
+        }
+      })
+
+    }
+    lastChecked = this;
+  }
+
+  checkBoxes.forEach(checkBox => checkBox.addEventListener('click', handleCheck));
+
+
+
+  
 </script>
 </body>
 </html>

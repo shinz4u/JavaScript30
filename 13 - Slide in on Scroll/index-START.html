@@ -58,6 +58,71 @@
       };
     }
 
+    const slider_images = document.querySelectorAll('.slide-in');
+
+    // function checkSlide(e){
+    //   // console.count(e);
+
+    //     // The pixel count at which the picture shoudl slide in at
+    //     // console.log("Slider IMage Height", sliderImage.height);
+    //     const slideInAt = (window.scrollY + window.innerHeight) - (sliderImage.height/2);
+    //     console.log("slideInAt", slideInAt);
+        
+    //     // The bottom of the image , offsetTop - gives the top of the image
+    //     const imageBottom = sliderImage.offsetTop + sliderImage.height;
+    //     console.log("imageBottom", imageBottom);
+
+    //     const isHalfShown = slideInAt > sliderImage.offsetTop;
+    //     console.log('isHalfShown',isHalfShown);
+    //     console.log('sliderImage.offsetTop',sliderImage.offsetTop);
+
+    //     const isNotScrolledPast = imageBottom > window.scrollY;
+    //     console.log('isNotScrolledPast',isNotScrolledPast);
+
+    //     if (isHalfShown && isNotScrolledPast){
+    //       sliderImage.classList.add('active');
+    //     } else{
+    //       sliderImage.classList.remove('active');
+    //     }
+
+    //     console.log("XXXXXXXXXXXXXXXXXXXXXXX");
+    //     console.log("XXXXXXXXXXXXXXXXXXXXXXX");
+    // }
+
+    function checkSlide(e){
+      // console.count(e);
+      slider_images.forEach(sliderImage => {
+
+        // The pixel count at which the picture shoudl slide in at
+        const slideInAt = (window.scrollY + window.innerHeight) - (sliderImage.height/2);
+        console.log("slideInAt", slideInAt);
+        
+        // The bottom of the image , offsetTop - gives the top of the image
+        const imageBottom = sliderImage.offsetTop + sliderImage.height;
+        console.log("imageBottom", imageBottom);
+
+        const isHalfShown = slideInAt > sliderImage.offsetTop;
+        console.log('isHalfShown',isHalfShown);
+        console.log('sliderImage.offsetTop',sliderImage.offsetTop);
+
+        const isNotScrolledPast = imageBottom > window.scrollY;
+        console.log('isNotScrolledPast',isNotScrolledPast);
+
+        if (isHalfShown && isNotScrolledPast){
+          sliderImage.classList.add('active');
+        } else{
+          sliderImage.classList.remove('active');
+        }
+
+        console.log("XXXXXXXXXXXXXXXXXXXXXXX");
+        console.log("XXXXXXXXXXXXXXXXXXXXXXX");
+      })
+    }
+    
+
+    window.addEventListener('scroll', debounce(checkSlide));
+
+
   </script>
 
   <style>
